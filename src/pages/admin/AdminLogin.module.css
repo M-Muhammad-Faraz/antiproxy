@@ -22,6 +22,7 @@
   border: none;
   background-color: transparent;
   outline: none;
+  width: 100%;
 }
 .line {
   height: 30px;
