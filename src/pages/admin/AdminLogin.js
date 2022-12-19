@@ -43,7 +43,7 @@ const AdminLogin = () => {
                 send a you link to login
               </p>
               {success ? (
-                <div>
+                <div className="mb-2">
                   <small className="text-success">Success!</small>
                 </div>
               ) : null}
