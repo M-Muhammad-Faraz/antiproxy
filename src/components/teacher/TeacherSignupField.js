@@ -8,10 +8,10 @@ const TeacherSignupField = ({ title, icon }) => {
         {icon}
         <label>{title}</label>
       </div>
-      <div className={classes.line + " col-1 align-items-center"}>
-        <AiOutlineLine size={28} color={"#999999"} />
+      <div className="col-7 d-flex align-items-center">
+        <div className={classes.line + " me-1"}></div>
+        <input type="text" className={classes.inp} />
       </div>
-      <input type="text" className={"col-6 " + classes.inp} />
     </div>
   );
 };

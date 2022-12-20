@@ -19,8 +19,8 @@ const TeacherSignup = () => {
   return (
     <div className="row">
       <div className={"col-3 " + classes.side}></div>
-      <div className="col-9">
-        <div>SIGNUP</div>
+      <div className="col-9 d-flex align-items-center justify-content-center flex-column">
+        <div className={"mb-3 " + classes.heading1}>SIGNUP</div>
         <form>
           <TeacherSignupField
             title={"Full Name"}
@@ -48,6 +48,7 @@ const TeacherSignup = () => {
               Agree to the <span>terms and conditions</span>.
             </label>
           </div>
+          <div className={classes.customBtn + " mt-3"}>REGISTER</div>
         </form>
       </div>
     </div>

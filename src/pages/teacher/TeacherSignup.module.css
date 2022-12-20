@@ -9,3 +9,19 @@
   max-width: 500px;
   margin: auto;
 }
+
+.customBtn {
+  margin: auto;
+  width: 250px;
+  text-align: center;
+  padding: 15px;
+  background-color: #b96d37;
+  color: white;
+  border-radius: 50px;
+}
+.heading1 {
+  font-weight: 600;
+  font-size: 40px;
+
+  color: #bb7848;
+}
