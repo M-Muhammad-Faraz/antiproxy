@@ -1,0 +1,13 @@
+.customInput {
+  background-color: #d9d9d9;
+  max-width: 500px;
+  margin: auto;
+  border-radius: 50px;
+}
+.line {
+  transform: rotateZ(1.57rad) translateX(-7px);
+}
+.inp {
+  background-color: #d9d9d9;
+  border: none;
+}

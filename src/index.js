@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import AdminPanel from "./pages/admin/AdminPanel";
 import AdminLogin from "./pages/admin/AdminLogin";
+import TeacherSignup from "./pages/teacher/TeacherSignup";
+import TeacherPortal from "./pages/teacher/TeacherPortal";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
   {
     path: "admin-panel",
     element: <AdminPanel />,
+  },
+  {
+    path: "teacher-panel",
+    element: <TeacherPortal />,
+  },
+  {
+    path: "teacher-register",
+    element: <TeacherSignup />,
   },
 ]);
 
