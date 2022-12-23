@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./TeacherSignupField.module.css";
 import { AiOutlineUser, AiOutlineLine } from "react-icons/ai";
-const TeacherSignupField = ({ title, icon }) => {
+const TeacherSignupField = ({ title, icon, handler }) => {
   return (
     <div className={classes.customInput + " mb-3 row  p-3 "}>
       <div className="col-5 d-flex align-items-center">
@@ -10,7 +10,13 @@ const TeacherSignupField = ({ title, icon }) => {
       </div>
       <div className="col-7 d-flex align-items-center">
         <div className={classes.line + " me-1"}></div>
-        <input type="text" className={classes.inp} />
+        <input
+          type="text"
+          className={classes.inp}
+          onChange={(e) => {
+            handler(e.target.value);
+          }}
+        />
       </div>
     </div>
   );

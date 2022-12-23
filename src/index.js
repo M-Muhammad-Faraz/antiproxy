@@ -12,6 +12,7 @@ import AdminPanel from "./pages/admin/AdminPanel";
 import AdminLogin from "./pages/admin/AdminLogin";
 import TeacherSignup from "./pages/teacher/TeacherSignup";
 import TeacherPortal from "./pages/teacher/TeacherPortal";
+import { DataProvidor } from "./context/DataProvidor";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -40,6 +41,8 @@ const router = createBrowserRouter([
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <DataProvidor>
+      <RouterProvider router={router} />
+    </DataProvidor>
   </React.StrictMode>
 );
