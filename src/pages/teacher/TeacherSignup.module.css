@@ -19,6 +19,9 @@
   color: white;
   border-radius: 50px;
 }
+.customBtn:hover {
+  background-color: #b96d37e3;
+}
 .heading1 {
   font-weight: 600;
   font-size: 40px;
