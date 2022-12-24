@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import {
   AiOutlineUser,
@@ -71,7 +72,18 @@ const TeacherSignup = () => {
         teacher_email: email,
         teacher_password: pass,
       };
+
       console.log(creds);
+      axios
+        .post("http://localhost:8000/register-new-teacher", creds, {
+          headers: { "content-type": "application/json" },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       console.log("Fill all blanks correctly first");
     }
