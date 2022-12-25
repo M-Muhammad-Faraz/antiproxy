@@ -8,6 +8,7 @@ import classes from "./AdminPanel.module.css";
 import AdminDashboard from "../../components/admin/AdminDashboard";
 import AdminHeader from "../../components/admin/AdminHeader";
 import AdminSidebar from "../../components/admin/AdminSidebar";
+import { Outlet } from "react-router-dom";
 
 const AdminPanel = () => {
   const [loader, setLoader] = useState(false);
@@ -55,7 +56,9 @@ const AdminPanel = () => {
       <AdminHeader />
       <div className="row">
         <AdminSidebar />
-        <AdminDashboard />
+        <div className="col-9">
+          <Outlet />
+        </div>
       </div>
     </div>
   ) : (

@@ -13,6 +13,8 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import TeacherSignup from "./pages/teacher/TeacherSignup";
 import TeacherPortal from "./pages/teacher/TeacherPortal";
 import { DataProvidor } from "./context/DataProvidor";
+import AdminDashboard from "./components/admin/AdminDashboard";
+import AdminNotification from "./components/admin/AdminNotification";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -28,6 +30,16 @@ const router = createBrowserRouter([
   {
     path: "admin-panel",
     element: <AdminPanel />,
+    children: [
+      {
+        path: "admin-panel/dashboard",
+        element: <AdminDashboard />,
+      },
+      {
+        path: "admin-panel/notification",
+        element: <AdminNotification />,
+      },
+    ],
   },
   {
     path: "teacher-panel",

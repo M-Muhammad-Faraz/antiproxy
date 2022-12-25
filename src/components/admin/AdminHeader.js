@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classes from "./AdminHeader.module.css";
 const AdminHeader = () => {
   return (
@@ -10,7 +11,9 @@ const AdminHeader = () => {
             className="d-flex align-items-center"
             style={{ margin: 0, padding: 0, listStyle: "none", gap: "10px" }}
           >
-            <li>Notification</li>
+            <li>
+              <Link to={"admin-panel/notification"}>Notification</Link>
+            </li>
             <li>Setting</li>
             <li>Logout</li>
           </ul>
