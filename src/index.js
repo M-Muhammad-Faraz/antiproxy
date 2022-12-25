@@ -18,19 +18,19 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const router = createBrowserRouter([
   {
-    path: "admin-login",
+    path: "/",
     element: <AdminLogin />,
   },
   {
-    path: "/",
+    path: "/admin-panel",
     element: <AdminPanel />,
     children: [
       {
-        path: "admin-panel/dashboard",
+        path: "/admin-panel/dashboard",
         element: <AdminDashboard />,
       },
       {
-        path: "admin-panel/notification",
+        path: "/admin-panel/notification",
         element: <AdminNotification />,
       },
     ],

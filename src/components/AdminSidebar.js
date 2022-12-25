@@ -7,7 +7,7 @@ const AdminSidebar = () => {
       <div className="p-3">
         <ul style={{ listStyle: "none" }}>
           <li className="mb-2">
-            <Link to={"admin-panel/dashboard"}>Dashboard</Link>
+            <Link to={"/admin-panel/dashboard"}>Dashboard</Link>
           </li>
           <li className="mb-2">Add a Student</li>
           <li className="mb-2">Verify New Teacher</li>

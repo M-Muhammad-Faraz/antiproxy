@@ -17,15 +17,16 @@ const AdminNotification = () => {
         headers: { "content-type": "application/json" },
       })
       .then(() => {
+        setProcessing(false);
         setData(
           data.filter((item) => {
             return item.teacher_uid === doc.teacher_uid;
           })
         );
-        setProcessing(false);
       })
       .catch((e) => {
         console.log(e);
+        setProcessing(false);
       });
   };
   const onApprove = (doc) => {
@@ -36,15 +37,16 @@ const AdminNotification = () => {
         headers: { "content-type": "application/json" },
       })
       .then(() => {
+        setProcessing(false);
         setData(
           data.filter((item) => {
             return item.teacher_uid === doc.teacher_uid;
           })
         );
-        setProcessing(false);
       })
       .catch((e) => {
         console.log(e);
+        setProcessing(false);
       });
   };
   useEffect(() => {

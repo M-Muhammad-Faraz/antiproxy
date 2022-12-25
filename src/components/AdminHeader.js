@@ -12,7 +12,7 @@ const AdminHeader = () => {
             style={{ margin: 0, padding: 0, listStyle: "none", gap: "10px" }}
           >
             <li>
-              <Link to={"admin-panel/notification"}>Notification</Link>
+              <Link to={"/admin-panel/notification"}>Notification</Link>
             </li>
             <li>Setting</li>
             <li>Logout</li>

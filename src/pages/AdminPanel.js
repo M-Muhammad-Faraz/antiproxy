@@ -7,7 +7,7 @@ import {
 import classes from "./AdminPanel.module.css";
 import AdminHeader from "../components/AdminHeader";
 import AdminSidebar from "../components/AdminSidebar";
-import { Outlet } from "react-router-dom";
+import { Outlet, redirect } from "react-router-dom";
 
 const AdminPanel = () => {
   const [loader, setLoader] = useState(false);
@@ -61,7 +61,7 @@ const AdminPanel = () => {
       </div>
     </div>
   ) : (
-    <div>Go Back</div>
+    <>go back</>
   );
 };
 
