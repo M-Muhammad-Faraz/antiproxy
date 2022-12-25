@@ -5,7 +5,7 @@ import {
   signInWithEmailLink,
 } from "firebase/auth";
 import classes from "./AdminPanel.module.css";
-import AdminDashboard from "../../components/admin/AdminDashboard";
+import AdminDashboard from "../../components/AdminDashboard";
 import AdminHeader from "../../components/admin/AdminHeader";
 import AdminSidebar from "../../components/admin/AdminSidebar";
 import { Outlet } from "react-router-dom";

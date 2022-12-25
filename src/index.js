@@ -9,11 +9,11 @@ import {
   Link,
 } from "react-router-dom";
 import AdminPanel from "./pages/admin/AdminPanel";
-import AdminLogin from "./pages/admin/AdminLogin";
+import AdminLogin from "./pages/AdminLogin";
 import TeacherSignup from "./pages/teacher/TeacherSignup";
 import TeacherPortal from "./pages/teacher/TeacherPortal";
 import { DataProvidor } from "./context/DataProvidor";
-import AdminDashboard from "./components/admin/AdminDashboard";
+import AdminDashboard from "./components/AdminDashboard";
 import AdminNotification from "./components/admin/AdminNotification";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
