@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
 import { actionCodeSettings } from "../settings/firebase";
 import classes from "./AdminLogin.module.css";
-import illustration from "../../assets/admin/human.png";
+import illustration from "../assets/human.png";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
