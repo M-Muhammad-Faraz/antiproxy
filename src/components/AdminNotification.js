@@ -40,7 +40,7 @@ const AdminNotification = () => {
         setProcessing(false);
         setData(
           data.filter((item) => {
-            return item.teacher_uid === doc.teacher_uid;
+            return item.teacher_uid !== doc.teacher_uid;
           })
         );
       })
@@ -65,6 +65,8 @@ const AdminNotification = () => {
     <div className={classes.main + " container py-3"}>
       {loading ? (
         "Loading Notifications"
+      ) : data.length === 0 ? (
+        <>No Notifications</>
       ) : (
         <ul classname="list-group list-group-flush">
           {data.map((doc) => {
