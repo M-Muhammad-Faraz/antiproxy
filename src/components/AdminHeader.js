@@ -14,7 +14,9 @@ const AdminHeader = () => {
             <li>
               <Link to={"/admin-panel/notification"}>Notification</Link>
             </li>
-            <li>Setting</li>
+            <li>
+              <Link to={"/admin-panel/setting"}>Setting</Link>
+            </li>
             <li>Logout</li>
           </ul>
         </div>

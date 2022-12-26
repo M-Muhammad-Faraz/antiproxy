@@ -9,8 +9,12 @@ const AdminSidebar = () => {
           <li className="mb-2">
             <Link to={"/admin-panel/dashboard"}>Dashboard</Link>
           </li>
-          <li className="mb-2">Add a Student</li>
-          <li className="mb-2">Verify New Teacher</li>
+          <li className="mb-2">
+            <Link to={"/admin-panel/add-student"}>Add a Student</Link>
+          </li>
+          <li className="mb-2">
+            <Link to={"/admin-panel/verify-teacher"}>Verify New Teacher</Link>
+          </li>
         </ul>
       </div>
     </div>

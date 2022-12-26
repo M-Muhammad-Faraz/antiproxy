@@ -11,8 +11,11 @@ import {
 import AdminPanel from "./pages/AdminPanel";
 import AdminLogin from "./pages/AdminLogin";
 import { DataProvidor } from "./context/DataProvidor";
-import AdminDashboard from "./components/AdminDashboard";
-import AdminNotification from "./components/AdminNotification";
+import AdminDashboard from "./components/Outlets/AdminDashboard";
+import AdminNotification from "./components/Outlets/AdminNotification";
+import AdminStudent from "./components/Outlets/AdminStudent";
+import AdminSetting from "./components/Outlets/AdminSetting";
+import AdminVerifyTeacher from "./components/Outlets/AdminVerifyTeacher";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -32,6 +35,18 @@ const router = createBrowserRouter([
       {
         path: "/admin-panel/notification",
         element: <AdminNotification />,
+      },
+      {
+        path: "/admin-panel/add-student",
+        element: <AdminStudent />,
+      },
+      {
+        path: "/admin-panel/verify-teacher",
+        element: <AdminVerifyTeacher />,
+      },
+      {
+        path: "/admin-panel/setting",
+        element: <AdminSetting />,
       },
     ],
   },

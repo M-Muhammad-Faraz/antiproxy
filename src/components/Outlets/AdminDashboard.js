@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./AdminDashboard.module.css";
-import AdminDashboardNotification from "./AdminDashboardNotification";
-import AdminTodos from "./AdminTodos";
+import AdminDashboardNotification from "../AdminDashboardNotification";
+import AdminTodos from "../AdminTodos";
 
 const AdminDashboard = () => {
   return (

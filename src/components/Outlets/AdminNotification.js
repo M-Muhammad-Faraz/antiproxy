@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import classes from "./AdminNotification.module.css";
-import { db } from "../settings/firebase";
-import AdminNotificationItem from "./AdminNotificationItem";
+import { db } from "../../settings/firebase";
+import AdminNotificationItem from "../AdminNotificationItem";
 import axios from "axios";
 const AdminNotification = () => {
   const [loading, setloading] = useState(false);
