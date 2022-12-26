@@ -9,45 +9,31 @@ const AdminNotification = () => {
   const [processing, setProcessing] = useState(false);
   const [data, setData] = useState([]);
 
-  const onReject = (doc) => {
+  const onReject = async (doc) => {
     setProcessing(true);
     const obj = { action: "reject", teacher: doc };
-    axios
-      .post("http://localhost:8000/teacher-action", obj, {
-        headers: { "content-type": "application/json" },
-      })
-      .then(() => {
-        setProcessing(false);
-        setData(
-          data.filter((item) => {
-            return item.teacher_uid === doc.teacher_uid;
-          })
-        );
-      })
-      .catch((e) => {
-        console.log(e);
-        setProcessing(false);
-      });
+
+    const res = await axios.post("http://localhost:8000/teacher-action", obj, {
+      headers: { "content-type": "application/json" },
+    });
+    setProcessing(false);
+    const newData = data.filter((item) => {
+      return item.teacher_uid !== doc.teacher_uid;
+    });
+    setData(newData);
   };
-  const onApprove = (doc) => {
+  const onApprove = async (doc) => {
     setProcessing(true);
     const obj = { action: "approved", teacher: doc };
-    axios
-      .post("http://localhost:8000/teacher-action", obj, {
-        headers: { "content-type": "application/json" },
+    await axios.post("http://localhost:8000/teacher-action", obj, {
+      headers: { "content-type": "application/json" },
+    });
+    setProcessing(false);
+    setData(
+      data.filter((item) => {
+        return item.teacher_uid !== doc.teacher_uid;
       })
-      .then(() => {
-        setProcessing(false);
-        setData(
-          data.filter((item) => {
-            return item.teacher_uid !== doc.teacher_uid;
-          })
-        );
-      })
-      .catch((e) => {
-        console.log(e);
-        setProcessing(false);
-      });
+    );
   };
   useEffect(() => {
     setloading(true);
@@ -66,9 +52,9 @@ const AdminNotification = () => {
       {loading ? (
         "Loading Notifications"
       ) : data.length === 0 ? (
-        <>No Notifications</>
+        <>No Notification</>
       ) : (
-        <ul classname="list-group list-group-flush">
+        <ul className="list-group list-group-flush">
           {data.map((doc) => {
             return (
               <AdminNotificationItem
