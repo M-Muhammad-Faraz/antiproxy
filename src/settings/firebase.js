@@ -18,7 +18,7 @@ const app = initializeApp(firebaseConfig);
 const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be in the authorized domains list in the Firebase Console.
-  url: "http://localhost:3000/admin-panel/dashboard",
+  url: "http://localhost:3001/admin-panel/dashboard",
   // This must be true.
   handleCodeInApp: true,
 };

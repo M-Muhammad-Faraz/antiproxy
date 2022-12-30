@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./AdminStudentField.module.css";
 const AdminStudentField = ({
   title,
@@ -7,7 +7,9 @@ const AdminStudentField = ({
   isPassword,
   isEmail,
   value,
+  extra,
 }) => {
+  const [err, setErr] = useState(false);
   return (
     <div className={classes.customRow + " row mb-2"}>
       <div className="col-6 align-self-center">
@@ -17,8 +19,13 @@ const AdminStudentField = ({
         <div className="col-6 align-self-center position-relative">
           <input
             type="password"
-            className={classes.customInp + ""}
+            className={
+              err
+                ? classes.customInp + " border border-danger"
+                : classes.customInp + ""
+            }
             onChange={(e) => {
+              setErr(validator(e.target.value, extra));
               setHandler(e.target.value);
             }}
           />
@@ -27,14 +34,26 @@ const AdminStudentField = ({
       ) : (
         <div className="col-6 align-self-center">
           {isEmail ? (
-            <div className={classes.customInp + " " + classes.mh44}>
+            <div
+              className={
+                err
+                  ? classes.customInp + " border border-danger " + classes.mh44
+                  : classes.customInp + " " + classes.mh44
+              }
+            >
               {value.length === 0 ? `${value}` : `${value}@cust.pk`}
             </div>
           ) : (
             <input
               type={"text"}
-              className={classes.customInp + ""}
+              className={
+                err
+                  ? classes.customInp + " border border-danger"
+                  : classes.customInp + ""
+              }
               onChange={(e) => {
+                setErr(validator(e.target.value));
+
                 setHandler(e.target.value);
               }}
             />

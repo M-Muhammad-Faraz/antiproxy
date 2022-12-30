@@ -11,6 +11,28 @@ const AdminStudent = () => {
   const [cpass, setCpass] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const NameValidator = (value) => {
+    if (value.length < 3) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const PassValidator = (value) => {
+    if (value.length < 8) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const CPassValidor = (value, password) => {
+    if (value !== password) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     const obj = {
@@ -43,11 +65,13 @@ const AdminStudent = () => {
           title={"Student's First Name"}
           setHandler={setFirstName}
           isPassword={false}
+          validator={NameValidator}
         />
         <AdminStudentField
           title={"Student's Last Name"}
           setHandler={setLastName}
           isPassword={false}
+          validator={NameValidator}
         />
         <AdminStudentField
           title={"Student's Registration Number"}
@@ -68,11 +92,14 @@ const AdminStudent = () => {
           title={"Student's Password"}
           setHandler={setPass}
           isPassword={true}
+          validator={PassValidator}
         />
         <AdminStudentField
           title={"Confirm Password"}
           setHandler={setCpass}
           isPassword={true}
+          validator={CPassValidor}
+          extra={pass}
         />
 
         <div className="text-center mt-3 ">
