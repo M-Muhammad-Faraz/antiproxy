@@ -77,16 +77,19 @@ const AdminStudent = () => {
           title={"Student's Registration Number"}
           setHandler={setRegNo}
           isPassword={false}
+          validator={() => {}}
         />
         <AdminStudentField
           isEmail={true}
           title={"Student's Email"}
           value={regNo}
+          validator={() => {}}
         />
         <AdminStudentField
           title={"Student's Degree"}
           setHandler={setDegree}
           isPassword={false}
+          validator={() => {}}
         />
         <AdminStudentField
           title={"Student's Password"}
