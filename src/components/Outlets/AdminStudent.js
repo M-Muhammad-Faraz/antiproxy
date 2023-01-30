@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useData } from "../../context/DataProvidor";
 import AdminStudentField from "../AdminStudentField";
 import classes from "./AdminStudent.module.css";
 const AdminStudent = () => {
@@ -10,6 +11,8 @@ const AdminStudent = () => {
   const [pass, setPass] = useState("");
   const [cpass, setCpass] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const AdminControl = useData();
 
   const NameValidator = (value) => {
     if (value.length < 3) {
@@ -42,10 +45,7 @@ const AdminStudent = () => {
       password: pass,
     };
     setLoading(true);
-    axios
-      .post("http://localhost:8000/add-new-student", obj, {
-        headers: { "content-type": "application/json" },
-      })
+    AdminControl.addStudent(obj)
       .then((res) => {
         console.log(res);
         setLoading(false);

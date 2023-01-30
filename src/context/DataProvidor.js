@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { admin } from "../model/admin.model";
 
 const DataContext = React.createContext();
 
@@ -7,12 +8,12 @@ export const useData = () => {
 };
 
 export const DataProvidor = ({ children }) => {
+  const Admin = new admin();
   return (
     <DataContext.Provider
       value={{
-        hello: () => {
-          console.log("Hello WOlrd");
-        },
+        teacherAction: Admin.teacherAction,
+        addStudent: Admin.addStudent,
       }}
     >
       {children}

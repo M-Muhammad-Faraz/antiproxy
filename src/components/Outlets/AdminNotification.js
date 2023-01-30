@@ -4,18 +4,16 @@ import classes from "./AdminNotification.module.css";
 import { db } from "../../settings/firebase";
 import AdminNotificationItem from "../AdminNotificationItem";
 import axios from "axios";
+import { useData } from "../../context/DataProvidor";
 const AdminNotification = () => {
   const [loading, setloading] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [data, setData] = useState([]);
-
+  const AdminControl = useData();
   const onReject = async (doc) => {
     setProcessing(true);
     const obj = { action: "reject", teacher: doc };
-
-    const res = await axios.post("http://localhost:8000/teacher-action", obj, {
-      headers: { "content-type": "application/json" },
-    });
+    await AdminControl.teacherAction(obj);
     setProcessing(false);
     const newData = data.filter((item) => {
       return item.teacher_uid !== doc.teacher_uid;
@@ -25,9 +23,7 @@ const AdminNotification = () => {
   const onApprove = async (doc) => {
     setProcessing(true);
     const obj = { action: "approved", teacher: doc };
-    await axios.post("http://localhost:8000/teacher-action", obj, {
-      headers: { "content-type": "application/json" },
-    });
+    await AdminControl.teacherAction(obj);
     setProcessing(false);
     setData(
       data.filter((item) => {
