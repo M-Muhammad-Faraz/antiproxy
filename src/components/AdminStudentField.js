@@ -1,15 +1,18 @@
 import React, { useState } from "react";
+import { useData } from "../context/DataProvidor";
 import classes from "./AdminStudentField.module.css";
 const AdminStudentField = ({
   title,
   validator,
   setHandler,
+  getHandle,
   isPassword,
   isEmail,
   value,
   extra,
 }) => {
   const [err, setErr] = useState(false);
+  const { currentDefault } = useData();
   return (
     <div className={classes.customRow + " row mb-2"}>
       <div className="col-6 align-self-center">
@@ -24,12 +27,20 @@ const AdminStudentField = ({
                 ? classes.customInp + " border border-danger"
                 : classes.customInp + ""
             }
+            value={getHandle}
             onChange={(e) => {
               setErr(validator(e.target.value, extra));
               setHandler(e.target.value);
             }}
           />
-          <div className={classes.defaultBtn + ""}>Default Password</div>
+          <div
+            className={classes.defaultBtn + ""}
+            onClick={() => {
+              setHandler(currentDefault);
+            }}
+          >
+            Default Password
+          </div>
         </div>
       ) : (
         <div className="col-6 align-self-center">
@@ -56,6 +67,7 @@ const AdminStudentField = ({
 
                 setHandler(e.target.value);
               }}
+              value={getHandle}
             />
           )}
         </div>

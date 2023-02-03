@@ -10,6 +10,7 @@ const AdminNotification = () => {
   const [processing, setProcessing] = useState(false);
   const [data, setData] = useState([]);
   const AdminControl = useData();
+  AdminControl.setSelectedPath("notification");
   const onReject = async (doc) => {
     setProcessing(true);
     const obj = { action: "reject", teacher: doc };

@@ -3,4 +3,20 @@
   background-size: cover;
   background-position: center;
   background-image: url("../assets/admin\ sidebar.png");
+  height: 87vh;
+}
+.activeLink {
+  text-decoration: none;
+  color: #b96d37;
+  font-weight: 600;
+}
+.inactiveLink {
+  color: #3a3a3a;
+  text-decoration: none;
+}
+.activeLink:hover {
+  color: #b96d37da;
+}
+.inactiveLink:hover {
+  color: #b96d37;
 }

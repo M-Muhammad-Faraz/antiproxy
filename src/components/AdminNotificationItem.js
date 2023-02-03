@@ -2,7 +2,10 @@ import React from "react";
 
 const AdminNotificationItem = ({ doc, onReject, onApprove, state }) => {
   return (
-    <li className="list-group-item d-flex align-items-center justify-content-between">
+    <li
+      className="list-group-item d-flex align-items-center justify-content-between"
+      style={{ backgroundColor: "#fff9f9" }}
+    >
       <div>
         <h5 style={{ margin: 0, padding: 0 }}>Teacher Approval</h5>
         <div>

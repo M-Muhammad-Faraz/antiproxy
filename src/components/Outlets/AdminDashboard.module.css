@@ -2,7 +2,10 @@
   background-color: #b96d37;
   padding: 10px 15px;
   width: 140px;
-
+  cursor: pointer;
   text-align: center;
   color: #fff9f9;
+}
+.customBtn:hover {
+  background-color: #b96d37da;
 }

@@ -4,11 +4,13 @@ import classes from "./AdminNotification.module.css";
 import { db } from "../../settings/firebase";
 import axios from "axios";
 import AdminVerifyTeacherRow from "../AdminVerifyTeacherRow";
+import { useData } from "../../context/DataProvidor";
 const AdminVerifyTeacher = () => {
   const [loading, setloading] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [data, setData] = useState([]);
-
+  const { setSelectedPath } = useData();
+  setSelectedPath("verify-teacher");
   const onReject = async (doc) => {
     setProcessing(true);
     const obj = { action: "reject", teacher: doc };

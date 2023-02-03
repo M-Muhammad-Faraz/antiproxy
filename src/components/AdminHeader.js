@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./AdminHeader.module.css";
+import { useData } from "../context/DataProvidor";
 const AdminHeader = () => {
+  const { selectedPath } = useData();
   return (
     <header className={classes.header + " d-flex align-items-center"}>
       <nav className="container d-flex justify-content-between align-items-center">
@@ -12,10 +14,28 @@ const AdminHeader = () => {
             style={{ margin: 0, padding: 0, listStyle: "none", gap: "10px" }}
           >
             <li>
-              <Link to={"/admin-panel/notification"}>Notification</Link>
+              <Link
+                to={"/admin-panel/notification"}
+                className={
+                  selectedPath === "notification"
+                    ? classes.activeLink
+                    : classes.inactiveLink
+                }
+              >
+                Notification
+              </Link>
             </li>
             <li>
-              <Link to={"/admin-panel/setting"}>Setting</Link>
+              <Link
+                to={"/admin-panel/setting"}
+                className={
+                  selectedPath === "setting"
+                    ? classes.activeLink
+                    : classes.inactiveLink
+                }
+              >
+                Setting
+              </Link>
             </li>
             <li>Logout</li>
           </ul>
