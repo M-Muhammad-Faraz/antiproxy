@@ -16,6 +16,7 @@ import AdminNotification from "./components/Outlets/AdminNotification";
 import AdminStudent from "./components/Outlets/AdminStudent";
 import AdminSetting from "./components/Outlets/AdminSetting";
 import AdminVerifyTeacher from "./components/Outlets/AdminVerifyTeacher";
+import ResetPassword from "./pages/ResetPassword";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <AdminLogin />,
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPassword />,
   },
   {
     path: "/admin-panel",

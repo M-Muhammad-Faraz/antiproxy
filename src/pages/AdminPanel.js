@@ -15,6 +15,7 @@ const AdminPanel = () => {
   const [loader, setLoader] = useState(false);
   const [option, setOption] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     const auth = getAuth();
     if (isSignInWithEmailLink(auth, window.location.href)) {
