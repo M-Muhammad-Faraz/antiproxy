@@ -59,8 +59,11 @@ const AdminStudent = () => {
 
   return (
     <div className="p-3">
-      <h3>Add a Student</h3>
-      <form className="container" onSubmit={submitHandler}>
+      <h3 className="text-center">Add a Student</h3>
+      <form
+        style={{ maxWidth: "600px", margin: "20px auto" }}
+        onSubmit={submitHandler}
+      >
         <AdminStudentField
           title={"First Name"}
           setHandler={setFirstName}

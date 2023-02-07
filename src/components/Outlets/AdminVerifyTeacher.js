@@ -54,7 +54,7 @@ const AdminVerifyTeacher = () => {
       {loading ? (
         "Loading Notifications"
       ) : data.length === 0 ? (
-        <>No Notification</>
+        <>No Verification Request Pending</>
       ) : (
         <table class="table table-striped">
           <thead>

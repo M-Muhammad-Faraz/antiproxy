@@ -1,80 +1,28 @@
 import React, { useState } from "react";
-import {
-  getAuth,
-  verifyPasswordResetCode,
-  confirmPasswordReset,
-} from "firebase/auth";
-
+import imgs from "../assets/Rectangle 13.png";
 import { Toast, ToastContainer } from "react-bootstrap";
-import "./ResetPasswordTeacher.css";
+import classes from "./ResetPassword.module.css";
 import axios from "axios";
-const ResetPasswordTeacher = () => {
+import { useNavigate, useLocation } from "react-router-dom";
+import ResetPasswordField from "../components/ResetPasswordField";
+const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordErr] = useState("");
   const [cpassword, setCPassword] = useState("");
   const [cpasswordError, setCPasswordErr] = useState("");
   const [show, setShow] = useState(false);
+
   const [toastSetting, setToastSetting] = useState({
     varient: "success",
     header: "Success",
     msg: "Success",
   });
-  function getParameterByName(name) {
-    const url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-      results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return "";
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-  }
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const email = queryParams.get("email");
 
-  function handleResetPassword(auth, actionCode, continueUrl, lang, password) {
-    // Localize the UI to the selected language as determined by the lang
-    // parameter.
-
-    // Verify the password reset code is valid.
-    verifyPasswordResetCode(auth, actionCode)
-      .then((email) => {
-        const accountEmail = email;
-        confirmPasswordReset(auth, actionCode, password)
-          .then((resp) => {
-            axios
-              .post("http://localhost:8000/update-password/teacher", {
-                email: accountEmail,
-                password: password,
-              })
-              .then(() => {
-                setToastSetting({
-                  varient: "success",
-                  header: "Success",
-                  msg: "Success",
-                });
-                setShow(true);
-              });
-          })
-          .catch((error) => {
-            // Error occurred during confirmation. The code might have expired or the
-            // password is too weak.
-            setToastSetting({
-              varient: "danger",
-              header: "Error",
-              msg: error.message,
-            });
-            setShow(true);
-          });
-      })
-      .catch((error) => {
-        setToastSetting({
-          varient: "danger",
-          header: "Error",
-          msg: error.message,
-        });
-        setShow(true);
-      });
-  }
-
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
     var passwordErr = "";
     var cpasswordErr = "";
     if (password.length === 0) {
@@ -97,61 +45,99 @@ const ResetPasswordTeacher = () => {
     }
     setCPasswordErr(cpasswordErr);
 
-    if (!cpasswordError && !passwordError) {
-      handleResetPassword(getAuth(), actionCode, "", "", password);
+    if (!cpasswordErr && !passwordErr) {
+      axios
+        .post("http://localhost:8000/update-password/teacher", {
+          email: email,
+          password: password,
+        })
+        .then(() => {
+          setToastSetting({
+            varient: "success",
+            header: "Success",
+            msg: "Success",
+          });
+          setShow(true);
+        })
+        .catch(() => {
+          setToastSetting({
+            varient: "danger",
+            header: "Error",
+            msg: "Error",
+          });
+          setShow(true);
+        });
     }
   };
 
-  const mode = getParameterByName("mode");
-  // Get the one-time code from the query parameter.
-  const actionCode = getParameterByName("oobCode");
-  console.log(mode, actionCode);
-
   return (
-    <div className="main">
-      <div className="main-form">
-        <h3 style={{ textAlign: "center" }}>Reset Password!</h3>
-        <div>
-          {passwordError ?? (
-            <span id="passErr" className="error">
-              {passwordError}
-            </span>
-          )}
-          <div className="row mb-2">
-            <label className="col-6" htmlFor="password">
-              Enter New Password:{" "}
-            </label>
-            <input
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              className="col-6"
-              type="password"
-              id="password"
-            />
+    <div className={`${classes.main}`}>
+      <div className={`container ${classes.mainArea}`}>
+        <div className="row g-0">
+          <div className="col-6">
+            <img src={imgs} alt="" />
           </div>
-          {cpasswordError ?? (
-            <span id="cpassErr" className="error">
-              {cpasswordError}
-            </span>
-          )}
-          <div className="row">
-            <label className="col-6" htmlFor="cpassword">
-              Confirm New Password:{" "}
-            </label>
-            <input
-              onChange={(e) => {
-                setCPassword(e.target.value);
-              }}
-              className="col-6"
-              type="password"
-              id="cpassword"
-            />
-          </div>
-          <div className="mt-2">
-            <button style={{ width: "100%" }} onClick={submitHandler}>
-              Submit
-            </button>
+          <div className="col-6 d-flex flex-column justify-content-center">
+            <div>
+              <div className={`${classes.mainForm}`}>
+                <h3 style={{ textAlign: "center" }} className="mb-5">
+                  RECOVOR PASSWORD
+                </h3>
+                <div>
+                  {passwordError ? (
+                    <div id="passErr" className={classes.err}>
+                      {passwordError}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  <ResetPasswordField
+                    title={"Password"}
+                    handler={setPassword}
+                    type="password"
+                    validator={(value) => {
+                      if (value.length === 0) {
+                        return false;
+                      } else if (value.length < 8) {
+                        return false;
+                      } else {
+                        return true;
+                      }
+                    }}
+                  />
+                  {cpasswordError ? (
+                    <div id="cpassErr" className={classes.err}>
+                      {cpasswordError}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  <ResetPasswordField
+                    title={"Confirm Password"}
+                    handler={setCPassword}
+                    type="password"
+                    val={password}
+                    validator={(value, pass) => {
+                      if (value.length === 0) {
+                        return false;
+                      } else if (value !== pass) {
+                        return false;
+                      } else {
+                        return true;
+                      }
+                    }}
+                  />
+                  <div className="mt-5 text-center">
+                    <button
+                      className={classes.customBtn}
+                      onClick={submitHandler}
+                    >
+                      Recover
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -182,4 +168,4 @@ const ResetPasswordTeacher = () => {
   );
 };
 
-export default ResetPasswordTeacher;
+export default ResetPassword;

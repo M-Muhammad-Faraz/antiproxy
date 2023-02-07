@@ -15,11 +15,11 @@ const AdminStudentField = ({
   const { currentDefault } = useData();
   return (
     <div className={classes.customRow + " row mb-2"}>
-      <div className="col-6 align-self-center">
+      <div className="col-5 align-self-center">
         <label>{title}</label>
       </div>
       {isPassword ? (
-        <div className="col-6 align-self-center position-relative">
+        <div className="col-7 align-self-center position-relative">
           <input
             type="password"
             className={
@@ -43,7 +43,7 @@ const AdminStudentField = ({
           </div>
         </div>
       ) : (
-        <div className="col-6 align-self-center">
+        <div className="col-7 align-self-center">
           {isEmail ? (
             <div
               className={

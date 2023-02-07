@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import imgs from "../assets/Rectangle 13.png";
 import { Toast, ToastContainer } from "react-bootstrap";
-import "./ResetPassword.css";
+import classes from "./ResetPassword.module.css";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import ResetPasswordField from "../components/ResetPasswordField";
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordErr] = useState("");
@@ -19,7 +21,8 @@ const ResetPassword = () => {
   const queryParams = new URLSearchParams(location.search);
   const email = queryParams.get("email");
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
     var passwordErr = "";
     var cpasswordErr = "";
     if (password.length === 0) {
@@ -42,7 +45,7 @@ const ResetPassword = () => {
     }
     setCPasswordErr(cpasswordErr);
 
-    if (!cpasswordError && !passwordError) {
+    if (!cpasswordErr && !passwordErr) {
       axios
         .post("http://localhost:8000/update-password/student", {
           email: email,
@@ -55,55 +58,86 @@ const ResetPassword = () => {
             msg: "Success",
           });
           setShow(true);
+        })
+        .catch(() => {
+          setToastSetting({
+            varient: "danger",
+            header: "Error",
+            msg: "Error",
+          });
+          setShow(true);
         });
     }
   };
 
   return (
-    <div className="main">
-      <div className="main-form">
-        <h3 style={{ textAlign: "center" }}>Reset Password!</h3>
-        <div>
-          {passwordError ?? (
-            <span id="passErr" className="error">
-              {passwordError}
-            </span>
-          )}
-          <div className="row mb-2">
-            <label className="col-6" htmlFor="password">
-              Enter New Password:{" "}
-            </label>
-            <input
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              className="col-6"
-              type="password"
-              id="password"
-            />
+    <div className={`${classes.main}`}>
+      <div className={`container ${classes.mainArea}`}>
+        <div className="row g-0">
+          <div className="col-6">
+            <img src={imgs} alt="" />
           </div>
-          {cpasswordError ?? (
-            <span id="cpassErr" className="error">
-              {cpasswordError}
-            </span>
-          )}
-          <div className="row">
-            <label className="col-6" htmlFor="cpassword">
-              Confirm New Password:{" "}
-            </label>
-            <input
-              onChange={(e) => {
-                setCPassword(e.target.value);
-              }}
-              className="col-6"
-              type="password"
-              id="cpassword"
-            />
-          </div>
-          <div className="mt-2">
-            <button style={{ width: "100%" }} onClick={submitHandler}>
-              Submit
-            </button>
+          <div className="col-6 d-flex flex-column justify-content-center">
+            <div>
+              <div className={`${classes.mainForm}`}>
+                <h3 style={{ textAlign: "center" }} className="mb-5">
+                  RECOVOR PASSWORD
+                </h3>
+                <div>
+                  {passwordError ? (
+                    <div id="passErr" className={classes.err}>
+                      {passwordError}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  <ResetPasswordField
+                    title={"Password"}
+                    handler={setPassword}
+                    type="password"
+                    validator={(value) => {
+                      if (value.length === 0) {
+                        return false;
+                      } else if (value.length < 8) {
+                        return false;
+                      } else {
+                        return true;
+                      }
+                    }}
+                  />
+                  {cpasswordError ? (
+                    <div id="cpassErr" className={classes.err}>
+                      {cpasswordError}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  <ResetPasswordField
+                    title={"Confirm Password"}
+                    handler={setCPassword}
+                    type="password"
+                    val={password}
+                    validator={(value, pass) => {
+                      if (value.length === 0) {
+                        return false;
+                      } else if (value !== pass) {
+                        return false;
+                      } else {
+                        return true;
+                      }
+                    }}
+                  />
+                  <div className="mt-5 text-center">
+                    <button
+                      className={classes.customBtn}
+                      onClick={submitHandler}
+                    >
+                      Recover
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
