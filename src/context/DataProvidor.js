@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { admin } from "../model/admin.model";
-
 const DataContext = React.createContext();
 
 export const useData = () => {
@@ -13,7 +12,6 @@ export const DataProvidor = ({ children }) => {
   const [todos, setTodos] = useState([]);
   const [selectedPath, setSelectedPath] = useState("");
   const [currentDefault, setCurrentDefault] = useState("");
-
   useEffect(() => {
     setCurrentDefault(localStorage.getItem("default"));
   }, []);

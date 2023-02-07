@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./AdminHeader.module.css";
 import { useData } from "../context/DataProvidor";
+
+import { useNavigate } from "react-router-dom";
 const AdminHeader = () => {
-  const { selectedPath } = useData();
+  const { selectedPath, logout } = useData();
+
+  const navigate = useNavigate();
   return (
     <header className={classes.header + " d-flex align-items-center"}>
       <nav className="container d-flex justify-content-between align-items-center">
@@ -37,7 +41,14 @@ const AdminHeader = () => {
                 Setting
               </Link>
             </li>
-            <li>Logout</li>
+            <li
+              style={{ cursor: "pointer", color: "red" }}
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Logout
+            </li>
           </ul>
         </div>
       </nav>

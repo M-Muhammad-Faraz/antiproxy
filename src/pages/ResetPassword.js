@@ -1,78 +1,23 @@
 import React, { useState } from "react";
-import {
-  getAuth,
-  verifyPasswordResetCode,
-  confirmPasswordReset,
-} from "firebase/auth";
-
 import { Toast, ToastContainer } from "react-bootstrap";
 import "./ResetPassword.css";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordErr] = useState("");
   const [cpassword, setCPassword] = useState("");
   const [cpasswordError, setCPasswordErr] = useState("");
   const [show, setShow] = useState(false);
+
   const [toastSetting, setToastSetting] = useState({
     varient: "success",
     header: "Success",
     msg: "Success",
   });
-  function getParameterByName(name) {
-    const url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-      results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return "";
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-  }
-
-  function handleResetPassword(auth, actionCode, continueUrl, lang, password) {
-    // Localize the UI to the selected language as determined by the lang
-    // parameter.
-
-    // Verify the password reset code is valid.
-    verifyPasswordResetCode(auth, actionCode)
-      .then((email) => {
-        const accountEmail = email;
-        confirmPasswordReset(auth, actionCode, password)
-          .then((resp) => {
-            axios
-              .post("http://localhost:8000/update-password/student", {
-                email: accountEmail,
-                password: password,
-              })
-              .then(() => {
-                setToastSetting({
-                  varient: "success",
-                  header: "Success",
-                  msg: "Success",
-                });
-                setShow(true);
-              });
-          })
-          .catch((error) => {
-            // Error occurred during confirmation. The code might have expired or the
-            // password is too weak.
-            setToastSetting({
-              varient: "danger",
-              header: "Error",
-              msg: error.message,
-            });
-            setShow(true);
-          });
-      })
-      .catch((error) => {
-        setToastSetting({
-          varient: "danger",
-          header: "Error",
-          msg: error.message,
-        });
-        setShow(true);
-      });
-  }
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const email = queryParams.get("email");
 
   const submitHandler = () => {
     var passwordErr = "";
@@ -98,14 +43,21 @@ const ResetPassword = () => {
     setCPasswordErr(cpasswordErr);
 
     if (!cpasswordError && !passwordError) {
-      handleResetPassword(getAuth(), actionCode, "", "", password);
+      axios
+        .post("http://localhost:8000/update-password/student", {
+          email: email,
+          password: password,
+        })
+        .then(() => {
+          setToastSetting({
+            varient: "success",
+            header: "Success",
+            msg: "Success",
+          });
+          setShow(true);
+        });
     }
   };
-
-  const mode = getParameterByName("mode");
-  // Get the one-time code from the query parameter.
-  const actionCode = getParameterByName("oobCode");
-  console.log(mode, actionCode);
 
   return (
     <div className="main">

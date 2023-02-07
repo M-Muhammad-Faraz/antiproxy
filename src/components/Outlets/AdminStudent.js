@@ -62,21 +62,21 @@ const AdminStudent = () => {
       <h3>Add a Student</h3>
       <form className="container" onSubmit={submitHandler}>
         <AdminStudentField
-          title={"Student's First Name"}
+          title={"First Name"}
           setHandler={setFirstName}
           isPassword={false}
           validator={NameValidator}
           getHandle={firstName}
         />
         <AdminStudentField
-          title={"Student's Last Name"}
+          title={"Last Name"}
           setHandler={setLastName}
           isPassword={false}
           validator={NameValidator}
           getHandle={lastName}
         />
         <AdminStudentField
-          title={"Student's Registration Number"}
+          title={"Registration Number"}
           setHandler={setRegNo}
           isPassword={false}
           validator={() => {}}
@@ -84,19 +84,19 @@ const AdminStudent = () => {
         />
         <AdminStudentField
           isEmail={true}
-          title={"Student's Email"}
+          title={"Email"}
           value={regNo}
           validator={() => {}}
         />
         <AdminStudentField
-          title={"Student's Degree"}
+          title={"Degree"}
           setHandler={setDegree}
           isPassword={false}
           validator={() => {}}
           getHandle={degree}
         />
         <AdminStudentField
-          title={"Student's Password"}
+          title={"Password"}
           setHandler={setPass}
           isPassword={true}
           validator={PassValidator}
