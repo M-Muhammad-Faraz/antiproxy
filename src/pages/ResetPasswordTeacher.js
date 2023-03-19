@@ -81,7 +81,7 @@ const ResetPassword = () => {
             <div>
               <div className={`${classes.mainForm}`}>
                 <h3 style={{ textAlign: "center" }} className="mb-5">
-                  RECOVOR PASSWORD
+                  RECOVER PASSWORD
                 </h3>
                 <div>
                   {passwordError ? (
